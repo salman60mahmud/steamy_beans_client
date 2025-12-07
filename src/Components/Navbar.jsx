@@ -7,41 +7,39 @@ import { Link } from "react-router";
 import './Navbar.css';
 
 const Navbar = () => {
-
-  const headlines =
-    <div className="flex text-xl exo">
+  const headlines = (
+    <div className="flex text-xl cursor-pointer exo">
       <li><Link to='/'>Home</Link></li>
       <li><Link to='/shop'>Shop</Link></li>
       <li><Link to='/about'>About Us</Link></li>
       <li><Link to='/contact'>Contact</Link></li>
-    </div>
+    </div>);
 
   return (
-    <div>
-      <div className="flex justify-around items-center bg-transparent shadow-sm w-full">
-        <div>
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
-            </div>
-            <ul
-              tabIndex="-1"
-              className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow">
-              {headlines}
-            </ul>
+    <div className="flex justify-around items-center bg-stone-800 opacity-80 shadow-sm w-full">
+      <div>
+        <div className="dropdown">
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
           </div>
-          <a className="btn btn-ghost text-3xl bubblegum-sans">Steamy Beans</a>
-        </div>
-        <div className="hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul tabIndex="-1"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
             {headlines}
           </ul>
         </div>
-        <div className="flex text-2xl gap-5 exo">
-          <IoSearchOutline />
-          <CiShoppingCart />
-          <CiUser />
-        </div>
+        <a className="text-4xl bubblegum-sans"><Link to='/'>Steamy Beans</Link></a>
+      </div>
+
+      <div className="hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">
+          {headlines}
+        </ul>
+      </div>
+
+      <div className="flex text-2xl gap-5 cursor-pointer exo">
+        <IoSearchOutline />
+        <CiShoppingCart />
+        <CiUser />
       </div>
     </div>
   );
