@@ -9,14 +9,14 @@ import './Navbar.css';
 const Navbar = () => {
   const headlines = (
     <div className="flex text-xl cursor-pointer exo">
-      <li><Link to='/'>Home</Link></li>
-      <li><Link to='/shop'>Shop</Link></li>
-      <li><Link to='/about'>About Us</Link></li>
-      <li><Link to='/contact'>Contact</Link></li>
+      <li className="hover:text-purple-500"><Link to='/'>Home</Link></li>
+      <li className="hover:text-purple-500"><Link to='/shop'>Shop</Link></li>
+      <li className="hover:text-purple-500"><Link to='/about-us'>About Us</Link></li>
+      <li className="hover:text-purple-500"><Link to='/contact'>Contact</Link></li>
     </div>);
 
   return (
-    <div className="flex justify-around items-center bg-stone-800 opacity-80 shadow-sm w-full">
+    <nav className="flex justify-around items-center bg-stone-800 opacity-80 shadow-sm w-full">
       <div>
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -41,7 +41,7 @@ const Navbar = () => {
         <CiShoppingCart />
         <CiUser />
       </div>
-    </div>
+    </nav>
   );
 };
 
