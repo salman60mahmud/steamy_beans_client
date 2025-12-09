@@ -5,7 +5,7 @@ const NotFound = () => {
     return (
         <div>
             <Navbar/>
-            <img className="mx-auto" src="../../src/Images/not-found.png" alt="not-found" />
+            <img className="mx-auto" src="../../src/images/not-found.png" alt="not-found" />
             <p className="mt-4 text-center text-3xl font-semibold">Back to <span className="underline"><Link to='/'>Home</Link></span></p>
         </div>
     );
