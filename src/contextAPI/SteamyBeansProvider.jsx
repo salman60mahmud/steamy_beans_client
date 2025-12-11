@@ -1,11 +1,45 @@
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
+import auth from '../firebase/firebase.config'
+import { createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { toast } from "react-toastify";
 
 export const SteamyBeansContext = createContext(null);
 
-const SteamyBeansProvider = ({children}) => {
-const data = {
-    name: 'abc'
-}
+const SteamyBeansProvider = ({ children }) => {
+    const [newuser, setUser] = useState(null);
+    useEffect(() => {
+        const observer = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in, see docs for a list of available properties
+                setUser(user);
+            } else {
+                // User is signed out
+                // ...
+            }
+        });
+        return () => observer();
+
+    }, [])
+
+    const handleRegisterwithEmail = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+
+    const signoutProcess = () => {
+       return signOut(auth).then(() => {
+            toast.success("SignOut Successfully");
+            // Sign-out successful.
+        }).catch((error) => {
+            toast.error(error.message);
+            // An error happened.
+        });
+    }
+
+    const data = {
+        handleRegisterwithEmail,
+        newuser,
+        signoutProcess
+    }
 
     return (
         <SteamyBeansContext.Provider value={data}>

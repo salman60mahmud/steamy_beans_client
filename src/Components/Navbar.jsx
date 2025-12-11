@@ -4,9 +4,17 @@ import './Navbar.css';
 import { IoSearchOutline } from "react-icons/io5";
 import { CiShoppingCart } from "react-icons/ci";
 import { CiUser } from "react-icons/ci";
-
+import { useContext } from "react";
+import { SteamyBeansContext } from "../contextAPI/SteamyBeansProvider";
+import Home from "../components/Home"
 
 const Navbar = () => {
+  const { newuser, signoutProcess } = useContext(SteamyBeansContext);
+
+  const handleSignout = () => {
+    signoutProcess();
+  }
+
   const headlines = (
     <div className="flex text-xl cursor-pointer exo">
       <li className="hover:text-purple-500"><Link to='/'>Home</Link></li>
@@ -27,7 +35,7 @@ const Navbar = () => {
             {headlines}
           </ul>
         </div>
-        <a className="text-4xl bubblegum-sans"><Link to='/'>Steamy Beans</Link></a>
+        <h1 className="text-4xl bubblegum-sans -mt-5"><Link to='/'>Steamy Beans</Link></h1>
       </div>
 
       <div className="hidden lg:flex">
@@ -37,10 +45,14 @@ const Navbar = () => {
       </div>
 
       <div className="flex text-2xl gap-5 cursor-pointer exo">
-        <IoSearchOutline />
-        <CiShoppingCart />
-        <Link to='/login'><CiUser /></Link>
+        <div><IoSearchOutline /></div>
+        <div><CiShoppingCart /></div>
+        <div>{newuser ? <>
+          <button onClick={handleSignout} className="text-white bg-amber-300 border-2">signout</button></> : <><Link to='/signup'><CiUser /></Link></>}</div>
+
       </div>
+
+
     </nav>
   );
 };
