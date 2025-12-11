@@ -39,7 +39,7 @@ const Navbar = () => {
       <div className="flex text-2xl gap-5 cursor-pointer exo">
         <IoSearchOutline />
         <CiShoppingCart />
-        <CiUser />
+        <Link to='/login'><CiUser /></Link>
       </div>
     </nav>
   );

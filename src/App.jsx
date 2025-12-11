@@ -5,6 +5,7 @@ import Shop from './Components/Shop'
 import AboutUs from './Components/AboutUs'
 import Contact from './Components/Contact'
 import NotFound from './Components/NotFound'
+import LoginSignup from './pages/LoginSignup'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path='/shop' element={<Shop />} />
         <Route path='/about-us' element={<AboutUs />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/login' element={<LoginSignup/>} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </>
