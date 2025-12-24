@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
-import './Navbar.css';
 // icons
 import { IoSearchOutline } from "react-icons/io5";
 import { CiShoppingCart } from "react-icons/ci";
 import { CiUser } from "react-icons/ci";
+
+import { Link } from "react-router-dom";
+import './Navbar.css';
 import { useContext } from "react";
 import { SteamyBeansContext } from "../contextAPI/SteamyBeansProvider";
-import Home from "../components/Home"
 
 const Navbar = () => {
   const { newuser, signoutProcess } = useContext(SteamyBeansContext);
@@ -47,9 +47,27 @@ const Navbar = () => {
       <div className="flex text-2xl gap-5 cursor-pointer exo">
         <div><IoSearchOutline /></div>
         <div><CiShoppingCart /></div>
-        <div>{newuser ? <>
-          <button onClick={handleSignout} className="text-white bg-amber-300 border-2">signout</button></> : <><Link to='/signup'><CiUser /></Link></>}</div>
+        <div className="drawer drawer-end">
+          <input id="my-drawer-5" type="checkbox" className="drawer-toggle" />
+          <div className="drawer-content">
+            {/* Page content here */}
+            <label htmlFor="my-drawer-5" className="cursor-pointer"><CiUser /></label>
+          </div>
+          <div className="drawer-side">
+            <label htmlFor="my-drawer-5" aria-label="close sidebar" className="drawer-overlay"></label>
+            <ul className="menu bg-white h-60 w-50 p-4">
+              {/* Sidebar content here */}
+              {newuser ?
+                <div className="mt-3 mr-5">
+                  <li><Link to='/profile' className="text-black">Your Profile</Link></li>
+                  <li><Link to='/cart' className="text-black">Cart</Link></li>
+                  <li onClick={handleSignout}><Link to='/' className="text-black">Logout</Link></li>
+                </div> :
+                <><li><Link to='/signup' className="text-black">Sign Up</Link></li></>}
 
+            </ul>
+          </div>
+        </div>
       </div>
 
 

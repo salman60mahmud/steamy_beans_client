@@ -8,6 +8,10 @@ import NotFound from './Components/NotFound'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import { ToastContainer } from 'react-toastify'
+import Cart from './pages/Cart'
+import Profile from './pages/Profile'
+import Dashboard from './pages/Dashboard'
+import AuthProvider from '../AuthProvider'
 
 function App() {
 
@@ -20,6 +24,9 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<SignUp/>} />
+        <Route path='/cart' element={<Cart/>} />
+        <Route path='/profile' element={<Profile/>} />
+        <Route path='/dashboard' element={<AuthProvider>{<Dashboard/>}</AuthProvider>} />
         <Route path='*' element={<NotFound />} /> 
       </Routes>
       <ToastContainer/>

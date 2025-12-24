@@ -2,11 +2,14 @@ import { createContext, useEffect, useState } from "react";
 import auth from '../firebase/firebase.config'
 import { createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 export const SteamyBeansContext = createContext(null);
 
 const SteamyBeansProvider = ({ children }) => {
+    const navigate = useNavigate();
     const [newuser, setUser] = useState(null);
+
     useEffect(() => {
         const observer = onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -26,8 +29,10 @@ const SteamyBeansProvider = ({ children }) => {
     }
 
     const signoutProcess = () => {
-       return signOut(auth).then(() => {
-            toast.success("SignOut Successfully");
+        return signOut(auth).then(() => {
+            setUser(null);
+            navigate('/');
+            toast.success("SignOut Successfully!");
             // Sign-out successful.
         }).catch((error) => {
             toast.error(error.message);

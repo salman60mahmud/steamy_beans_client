@@ -1,20 +1,20 @@
 import { useContext } from "react";
-import Navbar from "../Components/Navbar";
 import { SteamyBeansContext } from "../contextAPI/SteamyBeansProvider";
 import { toast } from "react-toastify";
 import { updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.config";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 const Signup = () => {
+    const navigate= useNavigate();
     const { handleRegisterwithEmail } = useContext(SteamyBeansContext);
 
-
-    const changeHandler = (e) => {
+    const signupHandler = (e) => {
         e.preventDefault();
-        const username = e.target.username.value
-        const email = e.target.email.value
-        const password = e.target.password.value
+        const username = e.target.username.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
 
         handleRegisterwithEmail(email, password)
             .then((userCredential) => {
@@ -22,6 +22,7 @@ const Signup = () => {
                 updateProfile(auth.currentUser, {
                     displayName: username, photoURL: "https://example.com/jane-q-user/profile.jpg"
                 }).then(() => {
+                    navigate('/dashboard');
                     toast.success('Registration successful!');
                     // Profile updated!
                     // ...
@@ -38,8 +39,8 @@ const Signup = () => {
 
     return (
         <div>
-            <Navbar />
-            <form onSubmit={changeHandler} className="flex justify-center items-center flex-col md:flex-row gap-12 mx-4 md:mx-14 mb-10 md:mb-0">
+            <Navbar/>
+            <form onSubmit={signupHandler} className="flex justify-center items-center flex-col md:flex-row gap-12 mx-4 md:mx-14 mb-10 md:mb-0">
                 {/* form part */}
                 <div className="mt-10 lg:mb-20 mb-5">
                     <h4 className="text-[16px] mb-3">Start Your Journey</h4>
