@@ -12,6 +12,8 @@ import Cart from './pages/Cart'
 import Profile from './pages/Profile'
 import Dashboard from './pages/Dashboard'
 import AuthProvider from '../AuthProvider'
+import Terms from './pages/Terms'
+import Privacy from './pages/Privacy'
 
 function App() {
 
@@ -24,6 +26,8 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<SignUp/>} />
+        <Route path='/terms' element={<Terms/>} />
+        <Route path='/privacy' element={<Privacy/>} />
         <Route path='/cart' element={<Cart/>} />
         <Route path='/profile' element={<Profile/>} />
         <Route path='/dashboard' element={<AuthProvider>{<Dashboard/>}</AuthProvider>} />
