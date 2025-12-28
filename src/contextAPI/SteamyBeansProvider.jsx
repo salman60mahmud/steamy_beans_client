@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import auth from '../firebase/firebase.config'
-import { createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 
@@ -40,10 +40,26 @@ const SteamyBeansProvider = ({ children }) => {
         });
     }
 
+    const loginProcess = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                setUser(user);
+                navigate('/dashboard');
+                toast.success('Registration successful!');
+                // ...
+            })
+            .catch((error) => {
+                toast.error(error.message);
+            });
+    }
+
     const data = {
         handleRegisterwithEmail,
         newuser,
-        signoutProcess
+        signoutProcess,
+        loginProcess
     }
 
     return (

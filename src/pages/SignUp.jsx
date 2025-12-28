@@ -15,6 +15,7 @@ const Signup = () => {
         const username = e.target.username.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
+        const role = "customer";
 
         handleRegisterwithEmail(email, password)
             .then((userCredential) => {
