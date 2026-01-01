@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import auth from '../firebase/firebase.config'
+import auth from '../firebase/firebase.config';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";

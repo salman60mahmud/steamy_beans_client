@@ -9,6 +9,7 @@ import Navbar from "../components/Navbar";
 const Signup = () => {
     const navigate = useNavigate();
     const { handleRegisterwithEmail } = useContext(SteamyBeansContext);
+    const [showPassword, setShowPassword] = useState(false); // Password visibility toggle
     const [isLoading, setIsLoading] = useState(false);
 
     const signupHandler = async (e) => {
@@ -111,25 +112,41 @@ const Signup = () => {
                         <input type="email" name="email" className="input w-full" placeholder="Email Address" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
 
                         <label className="text-[18px] sm:text-xl">Password</label>
-                        <input type="password" name="password" className="input w-full" placeholder="Password (min 6 characters)" required minLength="6" />
-
+                        <div className="relative">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                className="input w-full"
+                                placeholder="Password (min 6 characters)"
+                                required
+                                autoComplete="current-password"
+                                minLength="6"
+                            />
+                            <button
+                                type="button"
+                                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? "👁️" : "👁️‍🗨️"}
+                            </button>
+                        </div>
                         <button type="submit" className="btn text-base-100 bg-blue-600 hover:bg-base-100 hover:text-blue-600 mt-5 tracking-wide hover:tracking-normal w-full" disabled={isLoading}>
                             {isLoading ? (
-                            <><span className="loading loading-spinner loading-sm"></span>
-                                Creating Account...
-                            </>) : ('Create Account')}</button>
+                                <>
+                                <span className="loading loading-spinner loading-sm"></span>
+                                    Creating Account...
+                                </>) : ('Create Account')}</button>
 
                         <h3 className="text-[16px] mt-5">Forgot Password?</h3>
                         <h3 className="text-[16px]">
                             Already have an account?{' '}
                             <Link to='/login' className="text-blue-600 cursor-pointer ml-2 hover:underline">Login Here</Link ></h3>
-
                         <div className="flex items-center">
                             <input type="checkbox" className="checkbox text-blue-600" required />
                             <span className="text-[13px] ml-2 font-light">I agree to the{' '}
-                                    <Link to="/terms" className="link link-primary">Terms of Service</Link>{' '}
-                                    and{' '}
-                                    <Link to="/privacy" className="link link-primary">Privacy Policy</Link></span>
+                                <Link to="/terms" className="link link-primary">Terms of Service</Link>{' '}
+                                and{' '}
+                                <Link to="/privacy" className="link link-primary">Privacy Policy</Link></span>
                         </div>
                     </fieldset>
                 </div>

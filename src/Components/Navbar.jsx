@@ -16,18 +16,18 @@ const Navbar = () => {
   }
 
   const headlines = (
-    <div className="flex text-xl cursor-pointer exo">
-      <li className="hover:text-purple-500"><Link to='/'>Home</Link></li>
-      <li className="hover:text-purple-500"><Link to='/shop'>Shop</Link></li>
-      <li className="hover:text-purple-500"><Link to='/about-us'>About Us</Link></li>
-      <li className="hover:text-purple-500"><Link to='/contact'>Contact</Link></li>
+    <div className="lg:flex text-xl cursor-pointer exo">
+      <li className="hover:text-purple-500lg:text-white text-stone-800"><Link to='/'>Home</Link></li>
+      <li className="hover:text-purple-500lg:text-white text-stone-800"><Link to='/shop'>Shop</Link></li>
+      <li className="hover:text-purple-500lg:text-white text-stone-800"><Link to='/about-us'>About Us</Link></li>
+      <li className="hover:text-purple-500lg:text-white text-stone-800"><Link to='/contact'>Contact</Link></li>
     </div>);
 
   return (
     <nav className="flex justify-around items-center bg-stone-800 opacity-80 shadow-sm w-full">
-      <div>
+      <div className="flex">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" className="btn text-white btn-ghost lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
           </div>
           <ul tabIndex="-1"
@@ -35,7 +35,7 @@ const Navbar = () => {
             {headlines}
           </ul>
         </div>
-        <h1 className="text-4xl bubblegum-sans -mt-5"><Link to='/'>Steamy Beans</Link></h1>
+        <div className="text-2xl md:text-4xl bubblegum-sans"><Link to='/'>Steamy Beans</Link></div>
       </div>
 
       <div className="hidden lg:flex">
@@ -47,30 +47,26 @@ const Navbar = () => {
       <div className="flex text-2xl gap-5 cursor-pointer exo">
         <div><IoSearchOutline /></div>
         <div><CiShoppingCart /></div>
-        <div className="drawer drawer-end">
-          <input id="my-drawer-5" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content">
-            {/* Page content here */}
-            <label htmlFor="my-drawer-5" className="cursor-pointer"><CiUser /></label>
+        <div className="dropdown dropdown-center">
+          <div tabIndex={0} role="button" className="cursor-pointer">
+            <CiUser />
           </div>
-          <div className="drawer-side">
-            <label htmlFor="my-drawer-5" aria-label="close sidebar" className="drawer-overlay"></label>
-            <ul className="menu bg-white h-60 w-50 p-4">
-              {/* Sidebar content here */}
-              {newuser ?
-                <div className="mt-3 mr-5">
-                  <li><Link to='/profile' className="text-black">Your Profile</Link></li>
-                  <li><Link to='/cart' className="text-black">Cart</Link></li>
-                  <li onClick={handleSignout}><Link to='/' className="text-black">Logout</Link></li>
-                </div> :
-                <><li><Link to='/signup' className="text-black">Sign Up</Link></li></>}
 
-            </ul>
-          </div>
+          <ul
+            tabIndex="-1" className="dropdown-content menu bg-white rounded-box z-1 mt-6 w-52 p-4 shadow">
+            {newuser ? (
+              <>
+                <li><Link to="/dashboard" className="text-black text-lg">Your Profile</Link></li>
+                <li><Link to="/cart" className="text-black text-lg">Cart</Link></li>
+                <span className="divider"></span>
+                <li onClick={handleSignout}><Link to="/" className="text-black text-lg">Logout</Link></li>
+              </>
+            ) : (
+              <li><Link to="/signup" className="text-black text-lg">Sign Up</Link></li>
+            )}
+          </ul>
         </div>
       </div>
-
-
     </nav>
   );
 };
