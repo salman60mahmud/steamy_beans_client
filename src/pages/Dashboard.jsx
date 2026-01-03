@@ -9,7 +9,7 @@ const Dashboard = () => {
         <div className="drawer-content flex flex-col items-center justify-center">
           {/* Page content here */}
           <label htmlFor="my-drawer-3" className="btn drawer-button lg:hidden">
-            Open drawer
+            Dashboard
           </label>
         </div>
         <div className="drawer-side">
