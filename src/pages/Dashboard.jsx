@@ -9,13 +9,25 @@ const Dashboard = () => {
   const [user, setUser] = useState(null);
   const email = newuser?.email;
 
-
+  const API = import.meta.env.VITE_API_URL;
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/users/loginuser/${email}`)
-        .then(response => response.json())
-        .then(data => setUser(data))
-        .catch(error => console.error("Error fetching user:", error));
+      fetch(`${API}/users/loginuser/${email}`)
+        .then(response => {
+          console.log("Response status:", response.status);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log("Fetched user data:", data);
+          setUser(data);
+        })
+        .catch(error => {
+          console.error("Full error details:", error);
+          console.error("Error fetching user:", error.message);
+        });
     }
   }, [email]);
 
