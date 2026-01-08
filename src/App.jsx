@@ -13,6 +13,8 @@ import Dashboard from './pages/Dashboard'
 import AuthProvider from '../AuthProvider'
 import Terms from './pages/Terms'
 import Privacy from './pages/Privacy'
+import Admin from './components/Admin'
+import Users from './components/Users'
 
 function App() {
 
@@ -28,7 +30,12 @@ function App() {
         <Route path='/terms' element={<Terms />} />
         <Route path='/privacy' element={<Privacy />} />
         <Route path='/cart' element={<Cart />} />
-        <Route path='/dashboard' element={<AuthProvider > <Dashboard /></AuthProvider>} />
+        {/* DASHBOARD ROUTES */}
+        <Route path="/dashboard" element={<AuthProvider><Dashboard /></AuthProvider>}>
+          <Route index element={<Admin />} />
+          <Route path="admin" element={<Admin />} />
+          <Route path="users" element={<Users />} />
+        </Route>
         <Route path='*' element={<NotFound />} />
       </Routes>
       <ToastContainer />

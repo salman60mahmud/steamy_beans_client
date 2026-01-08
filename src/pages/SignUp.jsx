@@ -9,7 +9,7 @@ import Navbar from "../Components/Navbar";
 const Signup = () => {
     const navigate = useNavigate();
     const { handleRegisterwithEmail } = useContext(SteamyBeansContext);
-    const [showPassword, setShowPassword] = useState(false); // Password visibility toggle
+    const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     const signupHandler = async (e) => {
