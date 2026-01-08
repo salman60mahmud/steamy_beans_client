@@ -9,7 +9,6 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import { ToastContainer } from 'react-toastify'
 import Cart from './pages/Cart'
-import Profile from './pages/Profile'
 import Dashboard from './pages/Dashboard'
 import AuthProvider from '../AuthProvider'
 import Terms from './pages/Terms'
@@ -24,16 +23,15 @@ function App() {
         <Route path='/shop' element={<Shop />} />
         <Route path='/about-us' element={<AboutUs />} />
         <Route path='/contact' element={<Contact />} />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/signup' element={<SignUp/>} />
-        <Route path='/terms' element={<Terms/>} />
-        <Route path='/privacy' element={<Privacy/>} />
-        <Route path='/cart' element={<Cart/>} />
-        <Route path='/profile' element={<Profile/>} />
-        <Route path='/dashboard' element={<AuthProvider>{<Dashboard/>}</AuthProvider>} />
-        <Route path='*' element={<NotFound />} /> 
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/terms' element={<Terms />} />
+        <Route path='/privacy' element={<Privacy />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/dashboard' element={<AuthProvider > <Dashboard /></AuthProvider>} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
-      <ToastContainer/>
+      <ToastContainer />
     </>
   )
 }

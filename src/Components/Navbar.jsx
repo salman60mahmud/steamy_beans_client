@@ -1,16 +1,12 @@
-// icons
-import { IoSearchOutline } from "react-icons/io5";
-import { CiShoppingCart } from "react-icons/ci";
-import { CiUser } from "react-icons/ci";
-import { FaHouse } from "react-icons/fa6";
-import { FaShop } from "react-icons/fa6";
-import { FaPeopleGroup } from "react-icons/fa6";
-import { FaPhoneVolume } from "react-icons/fa6";
-
-import { Link } from "react-router-dom";
 import './Navbar.css';
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { SteamyBeansContext } from "../contextAPI/SteamyBeansProvider";
+
+// icons
+import { IoSearchOutline } from "react-icons/io5";
+import { CiShoppingCart, CiUser } from "react-icons/ci";
+import { FaHouse, FaShop, FaPeopleGroup, FaPhoneVolume } from "react-icons/fa6";
 
 const Navbar = () => {
   const { newuser, signoutProcess } = useContext(SteamyBeansContext);
@@ -61,16 +57,17 @@ const Navbar = () => {
 
           <ul
             tabIndex="-1" className="dropdown-content menu bg-white rounded-box z-1 mt-6 w-52 p-4 shadow">
-            {newuser ? (
+            {newuser ?
               <>
-                <li><Link to="/dashboard" className="text-black md:text-lg">Your Profile</Link></li>
+                <li><Link to="/dashboard" className="text-black md:text-lg">Profile</Link></li>
+
                 <li><Link to="/cart" className="text-black md:text-lg">Cart</Link></li>
                 <span className="divider"></span>
                 <li onClick={handleSignout}><Link to="/" className="text-black md:text-lg">Logout</Link></li>
               </>
-            ) : (
-              <li><Link to="/signup" className="text-black md:text-lg">Sign Up</Link></li>
-            )}
+              : (
+                <li><Link to="/signup" className="text-black md:text-lg">Sign Up</Link></li>
+              )}
           </ul>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import Navbar from "../Components/Navbar";
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -133,7 +133,7 @@ const Signup = () => {
                         <button type="submit" className="btn text-base-100 bg-blue-600 hover:bg-base-100 hover:text-blue-600 mt-5 tracking-wide hover:tracking-normal w-full" disabled={isLoading}>
                             {isLoading ? (
                                 <>
-                                <span className="loading loading-spinner loading-sm"></span>
+                                    <span className="loading loading-spinner loading-sm"></span>
                                     Creating Account...
                                 </>) : ('Create Account')}</button>
 
